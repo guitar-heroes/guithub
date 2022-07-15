@@ -5,9 +5,23 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      unique: true,
+      required: [true, 'You need to have a User Name']
     },
-    password: String,
+    email: {
+      type: String,
+      required: [true, 'Email is required.'],
+      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
+      trim: true,
+      unique: true,
+      lowercase:true,      
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      match: [/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/]
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -18,3 +32,5 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 module.exports = User;
+
+
