@@ -1,3 +1,5 @@
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Project2";
+require('dotenv/config')
 
-module.exports = MONGO_URI;
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/guitar-project'
+
+module.exports = MONGO_URI
