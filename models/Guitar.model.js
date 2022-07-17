@@ -52,6 +52,6 @@ const guitarSchema = new Schema(
   }
 )
 
-const Guitar = model('Guitar', userSchema)
+const Guitar = model('Guitar', guitarSchema) // fixed typo
 
 module.exports = Guitar
