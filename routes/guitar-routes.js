@@ -21,9 +21,14 @@ router.get("/", async(req, res, next) => {
 // CREATE: Render form
 router.get("/create", async(req, res, next) => {
   try {
+    const typeOptions = [
+      'Electric',
+      'Classical',
+      'Acoustic',
+    ]
     const user = await User.find();
     const guitarDetails = await Guitar.find();
-    res.render("guitars/guitar-create", {user, guitarDetails})
+    res.render("guitars/guitar-create", {typeOptions, user, guitarDetails})
   } catch(error) {
     console.log("Error getting users from DB", error);
     next(error);
@@ -32,99 +37,99 @@ router.get("/create", async(req, res, next) => {
 
 // CREATE: Process form
 router.post("/create", async (req, res, next) => {
+  const newGuitar = {
+    nickName: req.body.nickName,
+    brand: req.body.brand,
+    model: req.body.model,
+    countryOrigin: req.body.countryOrigin,
+    type: req.body.type,
+    year: req.body.year,
+    fingerboardMaterial: req.body.fingerboardMaterial,
+    pickupConfig: req.body.pickupConfig,
+    image: req.body.image,
+    artists: req.body.artists
+  };
+  console.log(newGuitar)
+  if (!newGuitar.nickName || !newGuitar.brand || !newGuitar.model || !newGuitar.type) {
+    return res.status(400).render("guitars/guitar-create", {
+      errorMessage: "Hey! Guitars were born with a nickname, brand, a model and a type. Please don't forget to add them all!",
+    });
+  }
+
   try {
-    const newGuitar = {
-      nickname: req.body.nickName,
-      brand: req.body.brand,
-      model: req.body.model,
-      countryOrigin: req.body.countryOrigin,
-      // type: req.body.type,
-      fingerboardMaterial: req.body.fingerboardMaterial,
-      image: req.body.image,
-      artists: req.body.artists,
-    };
-  
-    Guitar.create(newGuitar)
-    res.redirect("/");
+    await Guitar.create(newGuitar)
+    res.redirect("/guitars");
   } catch (error) {
-      console.log("Error creating book in the DB", error);
+      console.log("Error creating guitar in the DB", error);
       next(error);
   }
 })
 
-// // READ: Book details
-// router.get("/:bookId", (req, res, next) => {
-//   const bookId = req.params.bookId;
-
-//   Book.findById(bookId)
-//     .populate("author")
-//     .then( (bookDetails) => {
-//       res.render("books/book-details", bookDetails);
-//     })
-//     .catch( (error) => {
-//       console.log("Error getting book details from DB", error);
-//       next(error);
-//     })
-
-// })
+// READ: Guitar details
+router.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const guitarDetails = await Guitar.findById(id)
+    .populate("user")
+    res.render("guitars/guitar-details", guitarDetails);
+  } catch (error) {
+      console.log("Error getting guitar details from DB", error);
+      next(error);
+    }
+})
 
 
-// // UPDATE: Render form
-// router.get("/:bookId/edit", checkIfLoggedIn, (req, res, next) => {
-//   const {bookId} = req.params;
-
-//   Book.findById(bookId)
-//     .then( (bookDetails) => {
-//       res.render("books/book-edit", bookDetails);
-//     })
-//     .catch( (error) => {
-//       console.log("Error getting book details from DB", error);
-//       next(error);
-//     })
-
-// });
+// UPDATE: Render form
+router.get("/:id/edit", async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const guitarDetails = await Guitar.findById(id)
+    .populate('user')
+    res.render("guitars/guitar-edit", guitarDetails);
+  } catch(error) {
+      console.log("Error getting guitar details from DB", error);
+      next(error);
+    };
+});
 
 
-// // UPDATE: Process form
-// router.post("/:bookId/edit", checkIfLoggedIn, (req, res, next) => {
+// UPDATE: Process form
+router.post("/:id/edit", async(req, res, next) => {
 
-//   const bookId = req.params.bookId;
+  const id = req.params.id;
 
-//   const newDetails = {
-//     title: req.body.title,
-//     author: req.body.author,
-//     description: req.body.description,
-//     rating: req.body.rating,
-//   }
+  const newDetails = {
+    nickName: req.body.nickName,
+    brand: req.body.brand,
+    model: req.body.model,
+    countryOrigin: req.body.countryOrigin,
+    type: req.body.type,
+    year: req.body.year,
+    fingerboardMaterial: req.body.fingerboardMaterial,
+    pickupConfig: req.body.pickupConfig,
+    image: req.body.image,
+    artists: req.body.artists
+  }
+  try{
+    await Guitar.findByIdAndUpdate(id, newDetails)
+    res.redirect("/guitars");
+  } catch (error) {
+      console.log("Error updating guitar in DB", error);
+      next(error);
+    }
+});
 
 
-//   Book.findByIdAndUpdate(bookId, newDetails)
-//     .then( () => {
-//       // res.redirect(`/books/${bookId}`); // redirect to book details page
-//       res.redirect("/books");
-//     })
-//     .catch( (error) => {
-//       console.log("Error updating book in DB", error);
-//       next(error);
-//     })
-
-
-// });
-
-
-// // DELETE: delete book
-// router.post("/:bookId/delete", checkIfLoggedIn, (req, res, next) => {
-//   const {bookId} = req.params;
-
-//   Book.findByIdAndRemove(bookId)
-//     .then( () => {
-//       res.redirect('/books');
-//     })
-//     .catch( (error) => {
-//       console.log("Error deleting book from DB", error);
-//       next(error);
-//     })
-
-// })
+// DELETE: delete guitar
+router.post("/:id/delete", async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    await Guitar.findByIdAndRemove(id)
+      res.redirect('/guitars');
+  } catch (error) {
+      console.log("Error deleting guitar from DB", error);
+      next(error);
+    }
+})
 
 module.exports = router;

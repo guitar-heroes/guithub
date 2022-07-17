@@ -8,8 +8,11 @@
 <h1>List of all guitars</h1>
 
 {{#each guitarList}}
-    <img src="{{this.image}}" alt="">
+    <a href="/guitars/{{this._id}}"><img src="{{this.image}}" alt=""></a>
     <p>Brand: {{this.brand}}</p>
     <p>Model: {{this.model}}</p>
     <p>User: {{this.user.username}}</p>
+    <form action="/guitars/{{this._id}}/delete" method="POST">
+        <button>Delete</button>
+    </form>
 {{/each}}

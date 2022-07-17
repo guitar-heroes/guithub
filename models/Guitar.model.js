@@ -5,28 +5,27 @@ const guitarSchema = new Schema(
   {
     brand: {
       type: String,
-      required: true,
+      // required: [true, 'You need to provide a  brand']
     },
 
     model: {
       type: String,
-      // required: true,
+      // required: [true, 'You need to provide a model for your guitar']
     },
 
     nickName: {
       type: String,
-      // required: true,
+      // required: [true, 'You need a nickname for your guitar']
     },
 
     type: {
       type: String,
-      enum: ['electric', 'classic', 'acoustic'],
-      // required: true,
+      enum: ['Electric', 'Classic', 'Acoustic'],
     },
 
     image: {
       type: String,
-      default: '../public/images/guitar-default-img.png',
+      default: 'images/guitar-default-img.jpeg',
     },
 
     fingerboardMaterial: String,

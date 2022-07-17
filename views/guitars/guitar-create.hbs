@@ -1,54 +1,62 @@
 <a href="/">Home</a>
+<a href="/guitars">All guitars</a>
 <a href="/signup">Sign up</a>
 {{!-- fix above when users is created --}}
 <a href="/Login">Log in</a>
 {{!-- fix above when users is created --}}
 
 
-{{#each user}}
-<h1>Create your beauty {{this.name}}</h1>
-{{/each}}
+<h1>Tell us about your beauty {{user.name}}</h1>
+
+    {{#if errorMessage}}
+        <p class="warning">
+            {{errorMessage}}
+        </p>
+    {{/if}}
 
     <form action="/guitars/create" method="POST">
 
         <label> Nickname:
-            <input type="text" name="nickName" />
+            <input type="text" name="nickName" /><br>
         </label>
 
         <label> Brand:
-            <input type="text" name="brand" />
+            <input type="text" name="brand" /> <br>
         </label>
 
         <label> Model:
-            <input type="text" name="model" />
+            <input type="text" name="model" /> <br>
         </label>
 
         <label> Country of origin:
-            <input type="text" name="countryOrigin" />
+            <input type="text" name="countryOrigin" /><br>
+        </label>
+
+        <label> Year:
+            <input type="number" name="year" /><br>
         </label>
 
 
-
-        <label> Type:
-            <select name="type">
-            {{#each guitarDetails}}
-                <option value="{{this.type}}">{{this.type}}</option>
-            {{/each}}
-            </select>
+        <label> Type (Electric, Classic, Acoustic):
+            <input type='text' name="type"></input><br>
         </label>
 
         <label> Fingerboard Material:
-            <textarea name="fingerboardMaterial"> </textarea>
+            <input name="fingerboardMaterial"></input><br>
         </label>
 
-        <label> Image:
-            <textarea name="image"> </textarea>
+        <label> Pickup Configuration:
+            <input name="pickupConfig"> </input><br>
         </label>
+
+        {{!-- <label> Image:
+            <input type="file" name="image" class="form-control-file" /> <br>
+        </label> --}}
 
         <label> Please add any artist you know who plays a similar guitar:
-            <textarea name="artists" cols="20" rows="2"> </textarea>
+            <textarea name="artists" cols="20" rows="2"> </textarea> <br>
         </label>
 
-        <button type="submit"> Create </button>
+        <button type="submit"> Create </button> <br>
     </form>
 
