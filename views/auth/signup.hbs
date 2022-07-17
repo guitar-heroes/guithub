@@ -1,5 +1,5 @@
 <form class='box' action='/auth/signup' method='POST'>
-  <h1>Sign In</h1>
+  <h1>Sign Up</h1>
   {{#if errorMessage}}
     <p class='error'>{{errorMessage}}</p>
   {{/if}}
@@ -11,6 +11,8 @@
     Password:
     <input class='text-input' type='password' name='password' />
   </label>
+
+  <p>Already have an account? Log in <a href='/auth/login'>here</a></p>
 
   <button class='button' type='submit'>Submit</button>
 </form>
