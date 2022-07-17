@@ -1,0 +1,54 @@
+<a href="/">Home</a>
+<a href="/signup">Sign up</a>
+{{!-- fix above when users is created --}}
+<a href="/Login">Log in</a>
+{{!-- fix above when users is created --}}
+
+
+{{#each user}}
+<h1>Create your beauty {{this.name}}</h1>
+{{/each}}
+
+    <form action="/guitars/create" method="POST">
+
+        <label> Nickname:
+            <input type="text" name="nickName" />
+        </label>
+
+        <label> Brand:
+            <input type="text" name="brand" />
+        </label>
+
+        <label> Model:
+            <input type="text" name="model" />
+        </label>
+
+        <label> Country of origin:
+            <input type="text" name="countryOrigin" />
+        </label>
+
+
+
+        <label> Type:
+            <select name="type">
+            {{#each guitarDetails}}
+                <option value="{{this.type}}">{{this.type}}</option>
+            {{/each}}
+            </select>
+        </label>
+
+        <label> Fingerboard Material:
+            <textarea name="fingerboardMaterial"> </textarea>
+        </label>
+
+        <label> Image:
+            <textarea name="image"> </textarea>
+        </label>
+
+        <label> Please add any artist you know who plays a similar guitar:
+            <textarea name="artists" cols="20" rows="2"> </textarea>
+        </label>
+
+        <button type="submit"> Create </button>
+    </form>
+

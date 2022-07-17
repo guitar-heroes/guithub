@@ -10,18 +10,18 @@ const guitarSchema = new Schema(
 
     model: {
       type: String,
-      required: true,
+      // required: true,
     },
 
     nickName: {
       type: String,
-      required: true,
+      // required: true,
     },
 
     type: {
       type: String,
       enum: ['electric', 'classic', 'acoustic'],
-      required: true,
+      // required: true,
     },
 
     image: {
@@ -31,9 +31,7 @@ const guitarSchema = new Schema(
 
     fingerboardMaterial: String,
 
-    artists: {
-      Type: [String],
-    },
+    artists: String,
 
     year: Number,
 

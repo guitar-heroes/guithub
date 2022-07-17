@@ -1,0 +1,15 @@
+<a href="/">Home</a>
+<a href="/guitars/create">Add your beauty</a>
+<a href="/signup">Sign up</a>
+{{!-- fix above when users is created --}}
+<a href="/Login">Log in</a>
+{{!-- fix above when users is created --}}
+
+<h1>List of all guitars</h1>
+
+{{#each guitarList}}
+    <img src="{{this.image}}" alt="">
+    <p>Brand: {{this.brand}}</p>
+    <p>Model: {{this.model}}</p>
+    <p>User: {{this.user.username}}</p>
+{{/each}}
