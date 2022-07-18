@@ -1,24 +1,18 @@
-<a href="/">Home</a>
-<a href="/guitars">All guitars</a>
-<a href="/guitars/create">Add your beauty</a>
-<a href="/signup">Sign up</a>
-{{!-- fix above when users is created --}}
-<a href="/Login">Log in</a>
-{{!-- fix above when users is created --}}
+<div class='box auto-width form-box'>
+  <h1>Admire this beauty</h1>
 
-<h1>Admire this beauty</h1>
-
-    <img src="{{image}}" alt="">
-    <p>Nickname: {{nickName}}</p>
-    <p>Brand: {{brand}}</p>
-    <p>Model: {{model}}</p>
-    <p>Type of guitar: {{type}}</p>
-    <p>Country where it was produced: {{countryOrigin}}</p>
-    <p>Year: {{year}}</p>
-    <p>Fingerboard material: {{fingerboardMaterial}}</p>
-    <p>Pickup configuration: {{pickupConfig}}</p>
-    <p>Artist/s playing similar type of guitars: {{artists}}</p>
-    <p>User: {{user.username}}</p>
-    <button>
-        <a href="/guitars/{{_id}}/edit">Edit</a>
-    </button>
+  <img src='{{image}}' alt='' />
+  <p>Nickname: {{nickName}}</p>
+  <p>Brand: {{brand}}</p>
+  <p>Model: {{model}}</p>
+  <p>Type of guitar: {{type}}</p>
+  <p>Country where it was produced: {{countryOrigin}}</p>
+  <p>Year: {{year}}</p>
+  <p>Fingerboard material: {{fingerboardMaterial}}</p>
+  <p>Pickup configuration: {{pickupConfig}}</p>
+  <p>Artist/s playing similar type of guitars: {{artists}}</p>
+  <p>User: {{user.username}}</p>
+  <button class='button'>
+    <a class='buttonlink' href='/guitars/{{_id}}/edit'>Edit</a>
+  </button>
+</div>

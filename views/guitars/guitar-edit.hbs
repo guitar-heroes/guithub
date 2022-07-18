@@ -1,12 +1,5 @@
-<a href="/">Home</a>
-<a href="/guitars">All guitars</a>
-<a href="/signup">Sign up</a>
-{{!-- fix above when users is created --}}
-<a href="/Login">Log in</a>
-{{!-- fix above when users is created --}}
-
-
-    <h1>Change this beauty, {{user.name}}</h1>
+<div class="box auto-width form-box">
+    <h1>Change this beauty, {{user.username}}</h1>
 
     {{#if errorMessage}}
         <p class="warning">
@@ -14,51 +7,53 @@
         </p>
     {{/if}}
 
-    <form action="/guitars/{{_id}}/edit" method="POST">
+    <form class="form" action="/guitars/{{_id}}/edit" method="POST">
 
         <label> Nickname:
-            <input type="text" name="nickName" value="{{nickName}}"/><br>
+            <input type="text" name="nickName" value="{{nickName}}"/>
         </label>
 
         <label> Brand:
-            <input type="text" name="brand" value="{{brand}}"/> <br>
+            <input type="text" name="brand" value="{{brand}}"/> 
         </label>
 
         <label> Model:
-            <input type="text" name="model" value="{{model}}"/> <br>
+            <input type="text" name="model" value="{{model}}"/> 
         </label>
 
         <label> Country of origin:
-            <input type="text" name="countryOrigin" value="{{countryOrigin}}"/><br>
+            <input type="text" name="countryOrigin" value="{{countryOrigin}}"/>
         </label>
 
         <label> Year:
-            <input type="number" name="year" value="{{year}}"/><br>
+            <input type="number" name="year" value="{{year}}"/>
         </label>
 
         <label> Type (Electric, Classic, Acoustic):
-            <input type='text' name="type" value="{{type}}"></input><br>
+            <input type='text' name="type" value="{{type}}"></input>
         </label>
 
         <label> Fingerboard Material:
-            <input name="fingerboardMaterial" value="{{fingerboardMaterial}}"></input><br>
+            <input type="text" name="fingerboardMaterial" value="{{fingerboardMaterial}}"></input>
         </label>
 
         <label> Pickup Configuration:
-            <input name="pickupConfig" value="{{pickupConfig}}"> </input><br>
+            <input type="text" name="pickupConfig" value="{{pickupConfig}}"> </input>
         </label>
 
         {{!-- <label> Image:
-            <input type="file" name="image" class="form-control-file" /> <br>
+            <input type="file" name="image" class="form-control-file" /> 
         </label> --}}
 
-        <label> Please add any artist you know who plays a similar guitar:
-            <textarea name="artists" cols="20" rows="2"> {{artists}}</textarea> <br>
-        </label>
+        <label for="textarea"> Please add any artist you know who plays a similar guitar:</label>
+        <textarea id="textarea" name="artists" cols="20" rows="2"> {{artists}}</textarea>
 
-        <button type="submit"> Change </button> <br>
+        <div class="row-btns">
+        <button class="button" type="submit"> Change </button> 
         <form action="/guitars/{{_id}}/delete" method="POST">
-            <button>Delete</button>
-        </form>    
+            <button class="button delete">Delete</button>
+        </form>
+        </div>    
     </form>
 
+</div>
