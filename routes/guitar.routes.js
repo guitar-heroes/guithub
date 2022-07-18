@@ -87,6 +87,12 @@ router.get('/:id', async (req, res, next) => {
 // UPDATE: Render form
 router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
   const id = req.params.id
+  const typeOptions = {
+    optionOne: 'Electric',
+    optionTwo: 'Classic',
+    optionThree: 'Acoustic',
+  }
+
   try {
     const guitarDetails = await Guitar.findById(id).populate('user')
     res.render('guitars/guitar-edit', guitarDetails)

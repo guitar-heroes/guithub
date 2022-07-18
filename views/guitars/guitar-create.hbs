@@ -1,5 +1,5 @@
 <div class="box auto-width form-box">
-<h1>Tell us about your beauty</h1>
+<h1>Tell us about your beauty {{user.name}}</h1>
 
     {{#if errorMessage}}
         <p class="error">
@@ -7,12 +7,12 @@
         </p>
     {{/if}}
 
-
-    <form action="/guitars/create" method="POST" enctype="multipart/form-data">
-        <label> Image:
-            <input type="file" name="image" class="form-control-file" />
+    <form class="form" action="/guitars/create" method="POST" enctype="multipart/form-data">
+        <label>Image:
+          <input type="file" name="movie-cover-image" class="form-control-file" />
         </label>
     </form>
+
 
     <form class="form" action="/guitars/create" method="POST">
 
@@ -36,25 +36,12 @@
             <input class="text-input" type="number" name="year" />
         </label>
 
-        <label> Type:
-            <select name="type" id="type">
-                {{#each typeOptions}}
-                <option value="{{this}}">{{this}}</option>
-                {{/each}}
-            </select> <br>                
-        </label>
-
-        {{!-- <label> Type:
+        <label for="cars">Type of guitar:</label>
+        <select name="type" id="type">
             {{#each typeOptions}}
-                <button type="button" onclick="submit" value="{{this}}" name="type"> 
-                    {{this}}
-                </button>
-            {{/each}}<br>                
-        </label> --}}
-
-        {{!-- <label> Type (Electric, Classic, Acoustic):
-            <input name="type"></input><br>
-        </label> --}}
+                <option value={{this}}>{{this}}</option>
+            {{/each}}
+        </select>
 
         <label> Fingerboard Material:
             <input class="text-input" type='text' name="fingerboardMaterial"></input>
@@ -63,7 +50,6 @@
         <label> Pickup Configuration:
             <input class="text-input" type='text' name="pickupConfig"> </input>
         </label>
-
 
         <label for="textarea"> Please add any artist you know who plays a similar guitar: 
         </label>
