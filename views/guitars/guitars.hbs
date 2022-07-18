@@ -1,18 +1,16 @@
-<a href="/">Home</a>
-<a href="/guitars/create">Add your beauty</a>
-<a href="/signup">Sign up</a>
-{{!-- fix above when users is created --}}
-<a href="/Login">Log in</a>
-{{!-- fix above when users is created --}}
-
-<h1>List of all guitars</h1>
-
-{{#each guitarList}}
-    <a href="/guitars/{{this._id}}"><img src="{{this.image}}" alt=""></a>
-    <p>Brand: {{this.brand}}</p>
-    <p>Model: {{this.model}}</p>
-    <p>User: {{this.user.username}}</p>
-    <form action="/guitars/{{this._id}}/delete" method="POST">
-        <button>Delete</button>
-    </form>
-{{/each}}
+<div class='box max-width'>
+  <h1>User Collection</h1>
+  <div class='guitars-grid'>
+    {{#each guitarList}}
+      <div class='guitar-card'>
+        <a href='/guitars/{{this._id}}'><img src={{this.image}} alt='beauty-pic' /></a>
+        <p>Brand: {{this.brand}}</p>
+        <p>Model: {{this.model}}</p>
+        <p>User: {{this.user.username}}</p>
+        <form action='/guitars/{{this._id}}/delete' method='POST'>
+          <button>Delete</button>
+        </form>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,62 +1,55 @@
-<a href="/">Home</a>
-<a href="/guitars">All guitars</a>
-<a href="/signup">Sign up</a>
-{{!-- fix above when users is created --}}
-<a href="/Login">Log in</a>
-{{!-- fix above when users is created --}}
-
-
+<div class="box auto-width form-box">
 <h1>Tell us about your beauty {{user.name}}</h1>
 
     {{#if errorMessage}}
-        <p class="warning">
+        <p class="error">
             {{errorMessage}}
         </p>
     {{/if}}
 
-    <form action="/guitars/create" method="POST">
+    <form class="form" action="/guitars/create" method="POST">
 
         <label> Nickname:
-            <input type="text" name="nickName" /><br>
+            <input class="text-input" type="text" name="nickName" />
         </label>
 
         <label> Brand:
-            <input type="text" name="brand" /> <br>
+            <input class="text-input" type="text" name="brand" /> 
         </label>
 
         <label> Model:
-            <input type="text" name="model" /> <br>
+            <input class="text-input" type="text" name="model" /> 
         </label>
 
         <label> Country of origin:
-            <input type="text" name="countryOrigin" /><br>
+            <input class="text-input" type="text" name="countryOrigin" />
         </label>
 
         <label> Year:
-            <input type="number" name="year" /><br>
+            <input class="text-input" type="number" name="year" />
         </label>
 
 
         <label> Type (Electric, Classic, Acoustic):
-            <input type='text' name="type"></input><br>
+            <input class="text-input" type='text' name="type"></input>
         </label>
 
         <label> Fingerboard Material:
-            <input name="fingerboardMaterial"></input><br>
+            <input class="text-input" type='text' name="fingerboardMaterial"></input>
         </label>
 
         <label> Pickup Configuration:
-            <input name="pickupConfig"> </input><br>
+            <input class="text-input" type='text' name="pickupConfig"> </input>
         </label>
 
         {{!-- <label> Image:
-            <input type="file" name="image" class="form-control-file" /> <br>
+            <input type="file" name="image" class="form-control-file" /> 
         </label> --}}
 
-        <label> Please add any artist you know who plays a similar guitar:
-            <textarea name="artists" cols="20" rows="2"> </textarea> <br>
+        <label for="textarea"> Please add any artist you know who plays a similar guitar: 
         </label>
+        <textarea id="textarea" name="artists"></textarea>
 
-        <button type="submit"> Create </button> <br>
+        <button class="button" type="submit"> Create </button> 
     </form>
-
+</div>
