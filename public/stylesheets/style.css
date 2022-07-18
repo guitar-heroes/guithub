@@ -1,6 +1,16 @@
+:root {
+  --border-color: #bcbcbc;
+  --shadow-color: #4e4e4e;
+  --error-color: #dd1414;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1rem 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -9,4 +19,58 @@ a {
 
 h1 {
   color: 15px;
+}
+
+.text-input {
+  padding: 0.3rem 0.5rem;
+}
+
+.error {
+  color: var(--error-color);
+}
+
+#navbar {
+  border-bottom: 1px solid black;
+  padding: 3vh 5%;
+  margin-bottom: 5vh;
+}
+
+#navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 0.8rem;
+}
+
+.box {
+  margin: 0 30%;
+  padding: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0px 4px 4px 1px var(--shadow-color);
+  border-radius: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin: 1.2rem 0;
+}
+
+.form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.button {
+  padding: 0.3rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 10px;
 }
