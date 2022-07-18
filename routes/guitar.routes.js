@@ -24,8 +24,6 @@ router.get('/create', isLoggedIn, async (req, res, next) => {
   try {
     const typeOptions = ['Electric', 'Classic', 'Acoustic']
     const user = req.session.user
-    console.log(user)
-    // console.log(guitarDetails)
     res.render('guitars/guitar-create', { typeOptions, user })
   } catch (error) {
     console.log('Error getting users from DB', error)
@@ -34,7 +32,8 @@ router.get('/create', isLoggedIn, async (req, res, next) => {
 })
 
 // CREATE: Process form
-router.post('/create', async (req, res, next) => {
+router.post('/create', isLoggedIn, async (req, res, next) => {
+  console.log(req.body)
   const newGuitar = {
     nickName: req.body.nickName,
     brand: req.body.brand,
@@ -46,7 +45,7 @@ router.post('/create', async (req, res, next) => {
     pickupConfig: req.body.pickupConfig,
     image: req.body.image,
     artists: req.body.artists,
-    user: req.body.user,
+    user: req.session.user._id,
   }
   const typeOptions = ['Electric', 'Classic', 'Acoustic']
   if (!newGuitar.nickName || !newGuitar.brand || !newGuitar.model) {
@@ -98,7 +97,7 @@ router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
 })
 
 // UPDATE: Process form
-router.post('/:id/edit', async (req, res, next) => {
+router.post('/:id/edit', isLoggedIn, async (req, res, next) => {
   const id = req.params.id
 
   const newDetails = {
@@ -112,6 +111,7 @@ router.post('/:id/edit', async (req, res, next) => {
     pickupConfig: req.body.pickupConfig,
     image: req.body.image,
     artists: req.body.artists,
+    user: req.session.user._id,
   }
   try {
     await Guitar.findByIdAndUpdate(id, newDetails)

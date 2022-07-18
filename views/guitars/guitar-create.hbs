@@ -1,5 +1,5 @@
 <div class="box auto-width form-box">
-<h1>Tell us about your beauty {{user.name}}</h1>
+<h1>Tell us about your beauty</h1>
 
     {{#if errorMessage}}
         <p class="error">
@@ -10,16 +10,11 @@
 
     <form action="/guitars/create" method="POST" enctype="multipart/form-data">
         <label> Image:
-            <input type="file" name="image" class="form-control-file" /> <br>
+            <input type="file" name="image" class="form-control-file" />
         </label>
     </form>
 
     <form class="form" action="/guitars/create" method="POST">
-
-        <label> Username:
-            <option type="text" value="{{user._id}}" name="user">{{user.username}}<br>
-            </option>
-        </label>
 
         <label> Nickname:
             <input class="text-input" type="text" name="nickName" />
