@@ -7,7 +7,19 @@
         </p>
     {{/if}}
 
+
+    <form action="/guitars/create" method="POST" enctype="multipart/form-data">
+        <label> Image:
+            <input type="file" name="image" class="form-control-file" /> <br>
+        </label>
+    </form>
+
     <form class="form" action="/guitars/create" method="POST">
+
+        <label> Username:
+            <option type="text" value="{{user._id}}" name="user">{{user.username}}<br>
+            </option>
+        </label>
 
         <label> Nickname:
             <input class="text-input" type="text" name="nickName" />
@@ -29,10 +41,25 @@
             <input class="text-input" type="number" name="year" />
         </label>
 
-
-        <label> Type (Electric, Classic, Acoustic):
-            <input class="text-input" type='text' name="type"></input>
+        <label> Type:
+            <select name="type" id="type">
+                {{#each typeOptions}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select> <br>                
         </label>
+
+        {{!-- <label> Type:
+            {{#each typeOptions}}
+                <button type="button" onclick="submit" value="{{this}}" name="type"> 
+                    {{this}}
+                </button>
+            {{/each}}<br>                
+        </label> --}}
+
+        {{!-- <label> Type (Electric, Classic, Acoustic):
+            <input name="type"></input><br>
+        </label> --}}
 
         <label> Fingerboard Material:
             <input class="text-input" type='text' name="fingerboardMaterial"></input>
@@ -42,9 +69,6 @@
             <input class="text-input" type='text' name="pickupConfig"> </input>
         </label>
 
-        {{!-- <label> Image:
-            <input type="file" name="image" class="form-control-file" /> 
-        </label> --}}
 
         <label for="textarea"> Please add any artist you know who plays a similar guitar: 
         </label>
