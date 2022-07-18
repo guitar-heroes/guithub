@@ -1,0 +1,64 @@
+<a href="/">Home</a>
+<a href="/guitars">All guitars</a>
+<a href="/signup">Sign up</a>
+{{!-- fix above when users is created --}}
+<a href="/Login">Log in</a>
+{{!-- fix above when users is created --}}
+
+
+    <h1>Change this beauty, {{user.name}}</h1>
+
+    {{#if errorMessage}}
+        <p class="warning">
+            {{errorMessage}}
+        </p>
+    {{/if}}
+
+    <form action="/guitars/{{_id}}/edit" method="POST">
+
+        <label> Nickname:
+            <input type="text" name="nickName" value="{{nickName}}"/><br>
+        </label>
+
+        <label> Brand:
+            <input type="text" name="brand" value="{{brand}}"/> <br>
+        </label>
+
+        <label> Model:
+            <input type="text" name="model" value="{{model}}"/> <br>
+        </label>
+
+        <label> Country of origin:
+            <input type="text" name="countryOrigin" value="{{countryOrigin}}"/><br>
+        </label>
+
+        <label> Year:
+            <input type="number" name="year" value="{{year}}"/><br>
+        </label>
+
+        <label> Type (Electric, Classic, Acoustic):
+            <input type='text' name="type" value="{{type}}"></input><br>
+        </label>
+
+        <label> Fingerboard Material:
+            <input name="fingerboardMaterial" value="{{fingerboardMaterial}}"></input><br>
+        </label>
+
+        <label> Pickup Configuration:
+            <input name="pickupConfig" value="{{pickupConfig}}"> </input><br>
+        </label>
+
+        {{!-- <label> Image:
+            <input type="file" name="image" class="form-control-file" /> <br>
+        </label> --}}
+
+        <label> Please add any artist you know who plays a similar guitar:
+            <textarea name="artists" cols="20" rows="2"> {{artists}}</textarea> <br>
+        </label>
+
+        <button type="submit"> Change </button> <br>
+        <form action="/guitars/{{_id}}/delete" method="POST">
+            <button>Delete</button>
+        </form>    
+    </form>
+
