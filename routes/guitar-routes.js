@@ -52,7 +52,7 @@ router.post("/create", async (req, res, next) => {
   console.log(newGuitar)
   if (!newGuitar.nickName || !newGuitar.brand || !newGuitar.model || !newGuitar.type) {
     return res.status(400).render("guitars/guitar-create", {
-      errorMessage: "Hey! Guitars were born with a nickname, brand, a model and a type. Please don't forget to add them all!",
+      errorMessage: "Hey! Guitars were born with a nickname, brand, model and a type. Please don't forget to add them all!",
     });
   }
 
