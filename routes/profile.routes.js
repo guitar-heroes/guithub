@@ -134,10 +134,9 @@ router.get('/:userId', isLoggedIn, async (req, res, next) => {
 })
 
 router.get('/:userId/edit', isLoggedIn, async (req, res, next) => {
-  const userId = req.params.userId
   try {
-    const user = await User.findById(userId)
-    res.render('profile/profile-edit', user)
+    const userDetails = await User.findById(req.params.userId)
+    res.render('profile/profile-edit', userDetails)
   } catch (error) {
     console.log('error while retrieving list of guitars from DB ,', error)
     next()
@@ -159,7 +158,7 @@ router.post('/:userId/edit', fileUploader.single('image'), isLoggedIn, async (re
       image: req.file ? req.file.path : image,
       user: req.session.user._id,
     }
-    await User.findByIdAndUpdate(req.params.userId, { newDetails })
+    await User.findByIdAndUpdate(req.params.userId, newDetails)
     res.redirect('/profile/profile-page')
   } catch (error) {
     console.log('Error updating user in DB', error)
