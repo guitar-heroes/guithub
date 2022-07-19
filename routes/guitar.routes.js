@@ -35,7 +35,6 @@ router.get('/create', isLoggedIn, async (req, res, next) => {
 
 // CREATE: Process form
 router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
-  console.log('This is .req: ', req)
   const newGuitar = {
     nickName: req.body.nickName,
     brand: req.body.brand,
@@ -62,7 +61,6 @@ router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res
 
   try {
     const newlyCreatedGuitar = await Guitar.create(newGuitar)
-    console.log(newlyCreatedGuitar)
     res.redirect('/guitars')
   } catch (error) {
     console.log('Error creating guitar in the DB', error)
