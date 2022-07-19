@@ -1,5 +1,5 @@
 <div class="box auto-width form-box">
-    <h1>Change this beauty, {{user.username}}</h1>
+    <h1>Change the details of this beauty, {{user.username}}</h1>
 
     {{#if errorMessage}}
         <p class="warning">
@@ -29,9 +29,10 @@
             <input type="number" name="year" value="{{year}}"/>
         </label>
 
-        <label> Type (Electric, Classic, Acoustic):
-            <input type='text' name="type" value="{{type}}"></input>
-        </label>
+        <label for="cars">Type of guitar:</label>
+        <select name="type" id="type">
+                <option value={{typeOptions}}>{{typeOptions}}</option>
+        </select>
 
         <label> Fingerboard Material:
             <input type="text" name="fingerboardMaterial" value="{{fingerboardMaterial}}"></input>

@@ -5,17 +5,17 @@ const guitarSchema = new Schema(
   {
     brand: {
       type: String,
-      required: [true, 'You need to provide a  brand']
+      // required: [true, 'You need to provide a  brand'],
     },
 
     model: {
       type: String,
-      required: [true, 'You need to provide a model for your guitar']
+      // required: [true, 'You need to provide a model for your guitar'],
     },
 
     nickName: {
       type: String,
-      required: [true, 'You need a nickname for your guitar']
+      // required: [true, 'You need a nickname for your guitar'],
     },
 
     type: {
@@ -40,8 +40,8 @@ const guitarSchema = new Schema(
 
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
+      ref: 'User',
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

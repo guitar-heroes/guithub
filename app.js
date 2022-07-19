@@ -32,7 +32,7 @@ app.use('/auth', authRoutes)
 
 const profile = require('./routes/profile.routes')
 app.use('/profile', profile)
-const guitars = require('./routes/guitar-routes')
+const guitars = require('./routes/guitar.routes')
 app.use('/guitars', guitars)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
