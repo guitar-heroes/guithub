@@ -126,10 +126,54 @@ router.get('/:userId', isLoggedIn, async (req, res, next) => {
   try {
     const user = await User.findById(userId)
     console.log({ user })
-    res.render('profile/profile-page', { user })
+    res.render('profile/profile-page', user)
   } catch (error) {
     console.log('error while retrieving list of guitars from DB ,', error)
     next()
+  }
+})
+
+router.get('/:userId/edit', isLoggedIn, async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const user = await User.findById(userId)
+    res.render('profile/profile-edit', user)
+  } catch (error) {
+    console.log('error while retrieving list of guitars from DB ,', error)
+    next()
+  }
+})
+
+router.post('/:userId/edit', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
+  try {
+    const { image } = await User.findById(req.params.userId)
+    const newDetails = {
+      username: req.body.username,
+      email: req.body.email,
+      name: req.body.name,
+      country: req.body.country,
+      favArtists: req.body.favArtists,
+      favGenres: req.body.favGenres,
+      setup: req.body.setup,
+      description: req.body.description,
+      image: req.file ? req.file.path : image,
+      user: req.session.user._id,
+    }
+    await User.findByIdAndUpdate(req.params.userId, { newDetails })
+    res.redirect('/profile/profile-page')
+  } catch (error) {
+    console.log('Error updating user in DB', error)
+    next(error)
+  }
+})
+
+router.post('/:userId/delete', isLoggedIn, async (req, res, next) => {
+  try {
+    await User.findByIdAndRemove(req.params.userId)
+    res.redirect('/')
+  } catch (error) {
+    console.log('Error deleting user from DB', error)
+    next(error)
   }
 })
 

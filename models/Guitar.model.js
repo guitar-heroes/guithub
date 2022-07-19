@@ -25,7 +25,8 @@ const guitarSchema = new Schema(
 
     image: {
       type: String,
-      default: 'images/guitar-default-img.jpeg',
+      default:
+        'https://res.cloudinary.com/dohwegeh8/image/upload/v1658250712/guitars/guitar-default-img_okg1pa.pngimages/guitar-default-img.jpeg',
     },
 
     fingerboardMaterial: String,
