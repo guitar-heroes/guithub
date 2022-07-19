@@ -61,7 +61,7 @@ router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res
   }
 
   try {
-    const newlyCreatedGuitar = await Guitar.create({ newGuitar })
+    const newlyCreatedGuitar = await Guitar.create(newGuitar)
     console.log(newlyCreatedGuitar)
     res.redirect('/guitars')
   } catch (error) {
