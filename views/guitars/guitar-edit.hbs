@@ -7,35 +7,37 @@
         </p>
     {{/if}}
 
-    <form class="form" action="/guitars/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+    <form class="form" action="/guitars/{{guitarDetails._id}}/edit" method="POST" enctype="multipart/form-data">
 
         <label>Image:
             <input type="file" name="image" />
         </label>
 
         <label> Nickname:
-            <input type="text" name="nickName" value="{{nickName}}"/>
+            <input type="text" name="nickName" value="{{guitarDetails.nickName}}"/>
         </label>
 
         <label> Brand:
-            <input type="text" name="brand" value="{{brand}}"/> 
+            <input type="text" name="brand" value="{{guitarDetails.brand}}"/> 
         </label>
 
         <label> Model:
-            <input type="text" name="model" value="{{model}}"/> 
+            <input type="text" name="model" value="{{guitarDetails.model}}"/> 
         </label>
 
         <label> Country of origin:
-            <input type="text" name="countryOrigin" value="{{countryOrigin}}"/>
+            <input type="text" name="countryOrigin" value="{{guitarDetails.countryOrigin}}"/>
         </label>
 
         <label> Year:
-            <input type="number" name="year" value="{{year}}"/>
+            <input type="number" name="year" value="{{guitarDetails.year}}"/>
         </label>
 
         <label for="cars">Type of guitar:</label>
         <select name="type" id="type">
-                <option value={{typeOptions}}>{{typeOptions}}</option>
+            {{#each typeOptions}}
+                <option value={{this}}>{{this}}</option>
+            {{/each}}
         </select>
 
         <label> Fingerboard Material:
@@ -43,15 +45,15 @@
         </label>
 
         <label> Pickup Configuration:
-            <input type="text" name="pickupConfig" value="{{pickupConfig}}"> </input>
+            <input type="text" name="pickupConfig" value="{{guitarDetails.pickupConfig}}"> </input>
         </label>
 
         <label for="textarea"> Please add any artist you know who plays a similar guitar:</label>
-        <textarea id="textarea" name="artists" cols="20" rows="2"> {{artists}}</textarea>
+        <textarea id="textarea" name="artists" cols="20" rows="2"> {{guitarDetails.artists}}</textarea>
 
         <div class="row-btns">
         <button class="button" type="submit"> Change </button> 
-        <form action="/guitars/{{_id}}/delete" method="POST">
+        <form action="/guitars/{{guitarDetails._id}}/delete" method="POST">
             <button class="button delete">Delete</button>
         </form>
         </div>    

@@ -81,15 +81,11 @@ router.get('/:id', async (req, res, next) => {
 // UPDATE: Render form
 router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
   const id = req.params.id
-  const typeOptions = {
-    optionOne: 'Electric',
-    optionTwo: 'Classic',
-    optionThree: 'Acoustic',
-  }
+  const typeOptions = ['Electric', 'Classic', 'Acoustic']
 
   try {
     const guitarDetails = await Guitar.findById(id).populate('user')
-    res.render('guitars/guitar-edit', guitarDetails)
+    res.render('guitars/guitar-edit', { guitarDetails, typeOptions })
   } catch (error) {
     console.log('Error getting guitar details from DB', error)
     next(error)
@@ -100,20 +96,21 @@ router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
 router.post('/:id/edit', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
   const id = req.params.id
 
-  const newDetails = {
-    nickName: req.body.nickName,
-    brand: req.body.brand,
-    model: req.body.model,
-    countryOrigin: req.body.countryOrigin,
-    type: req.body.type,
-    year: req.body.year,
-    fingerboardMaterial: req.body.fingerboardMaterial,
-    pickupConfig: req.body.pickupConfig,
-    image: req.file.path,
-    artists: req.body.artists,
-    user: req.session.user._id,
-  }
   try {
+    const { image } = await Guitar.findById(id)
+    const newDetails = {
+      nickName: req.body.nickName,
+      brand: req.body.brand,
+      model: req.body.model,
+      countryOrigin: req.body.countryOrigin,
+      type: req.body.type,
+      year: req.body.year,
+      fingerboardMaterial: req.body.fingerboardMaterial,
+      pickupConfig: req.body.pickupConfig,
+      image: req.file ? req.file.path : image,
+      artists: req.body.artists,
+      user: req.session.user._id,
+    }
     await Guitar.findByIdAndUpdate(id, newDetails)
     res.redirect('/guitars')
   } catch (error) {
