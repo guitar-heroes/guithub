@@ -6,8 +6,6 @@ const User = require('../models/User.model')
 
 const fileUploader = require('../config/cloudinary.config')
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require('../middleware/isLoggedOut')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 //READ list of guitars
@@ -60,7 +58,7 @@ router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res
   }
 
   try {
-    const newlyCreatedGuitar = await Guitar.create(newGuitar)
+    await Guitar.create(newGuitar)
     res.redirect('/guitars')
   } catch (error) {
     console.log('Error creating guitar in the DB', error)
@@ -99,7 +97,7 @@ router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
 })
 
 // UPDATE: Process form
-router.post('/:id/edit', isLoggedIn, async (req, res, next) => {
+router.post('/:id/edit', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
   const id = req.params.id
 
   const newDetails = {
@@ -111,7 +109,7 @@ router.post('/:id/edit', isLoggedIn, async (req, res, next) => {
     year: req.body.year,
     fingerboardMaterial: req.body.fingerboardMaterial,
     pickupConfig: req.body.pickupConfig,
-    image: req.body.image,
+    image: req.file.path,
     artists: req.body.artists,
     user: req.session.user._id,
   }

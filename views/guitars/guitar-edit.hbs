@@ -7,7 +7,11 @@
         </p>
     {{/if}}
 
-    <form class="form" action="/guitars/{{_id}}/edit" method="POST">
+    <form class="form" action="/guitars/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+
+        <label>Image:
+            <input type="file" name="image" />
+        </label>
 
         <label> Nickname:
             <input type="text" name="nickName" value="{{nickName}}"/>
@@ -41,10 +45,6 @@
         <label> Pickup Configuration:
             <input type="text" name="pickupConfig" value="{{pickupConfig}}"> </input>
         </label>
-
-        {{!-- <label> Image:
-            <input type="file" name="image" class="form-control-file" /> 
-        </label> --}}
 
         <label for="textarea"> Please add any artist you know who plays a similar guitar:</label>
         <textarea id="textarea" name="artists" cols="20" rows="2"> {{artists}}</textarea>
