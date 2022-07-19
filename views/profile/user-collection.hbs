@@ -1,0 +1,13 @@
+<div class='box max-width'>
+  <h1>User's Collection</h1>
+  <div class='guitars-grid'>
+    {{#each collection}}
+      <div class='guitar-card'>
+        <h3>{{nickName}}</h3>
+        <a href='/guitars/{{id}}'><img src={{image}} alt='beauty-pic' /></a>
+        <p>Brand: {{brand}}</p>
+        <p>Model: {{model}}</p>
+      </div>
+    {{/each}}
+  </div>
+</div>
