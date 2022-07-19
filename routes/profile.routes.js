@@ -121,4 +121,16 @@ router.post('/guitar/:guitarId/delete', isLoggedIn, async (req, res, next) => {
   }
 })
 
+router.get('/:userId', isLoggedIn, async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const user = await User.findById(userId)
+    console.log({ user })
+    res.render('profile/profile-page', { user })
+  } catch (error) {
+    console.log('error while retrieving list of guitars from DB ,', error)
+    next()
+  }
+})
+
 module.exports = router
