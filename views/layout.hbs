@@ -18,14 +18,14 @@
           </li>
           |
           <li>
-            <a href='/profile/{{session.user._id}}/collection'>My Beauties</a>
+            <a href='/profile/{{user._id}}/collection'>My Beauties</a>
           </li>
           <li>
             <a href='/guitars/create'>Create new Beauty</a>
           </li>
           |
           <li>
-            <a href='#'>My profile</a>
+            <a href='/profile/{{user._id}}'>My profile</a>
           </li>
         </ul>
         <ul>
@@ -35,6 +35,10 @@
         </ul>
       {{else}}
         <ul>
+          <li>
+            <a href='/'>Home</a>
+          </li>
+          |
           <li>
             <a href='/guitars'>Explore</a>
           </li>
