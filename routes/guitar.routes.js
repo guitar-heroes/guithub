@@ -4,6 +4,8 @@ const router = require('express').Router()
 const Guitar = require('../models/Guitar.model')
 const User = require('../models/User.model')
 
+const fileUploader = require('../config/cloudinary.config')
+
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require('../middleware/isLoggedOut')
 const isLoggedIn = require('../middleware/isLoggedIn')
@@ -32,8 +34,8 @@ router.get('/create', isLoggedIn, async (req, res, next) => {
 })
 
 // CREATE: Process form
-router.post('/create', isLoggedIn, async (req, res, next) => {
-  console.log(req.body)
+router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
+  console.log('This is .req: ', req)
   const newGuitar = {
     nickName: req.body.nickName,
     brand: req.body.brand,
@@ -43,11 +45,13 @@ router.post('/create', isLoggedIn, async (req, res, next) => {
     year: req.body.year,
     fingerboardMaterial: req.body.fingerboardMaterial,
     pickupConfig: req.body.pickupConfig,
-    image: req.body.image,
     artists: req.body.artists,
+    image: req.file.path,
     user: req.session.user._id,
   }
+
   const typeOptions = ['Electric', 'Classic', 'Acoustic']
+
   if (!newGuitar.nickName || !newGuitar.brand || !newGuitar.model) {
     return res.status(400).render('guitars/guitar-create', {
       typeOptions,
@@ -56,15 +60,9 @@ router.post('/create', isLoggedIn, async (req, res, next) => {
     })
   }
 
-  // if (!newGuitar.nickName || !newGuitar.brand || !newGuitar.model || !newGuitar.type) {
-  //   return res.status(400).render('guitars/guitar-create', {
-  //     errorMessage:
-  //       "Hey! Guitars were born with a nickname, brand, model and a type. Please don't forget to add them all!",
-  //   })
-  // }
-
   try {
-    await Guitar.create(newGuitar)
+    const newlyCreatedGuitar = await Guitar.create({ newGuitar })
+    console.log(newlyCreatedGuitar)
     res.redirect('/guitars')
   } catch (error) {
     console.log('Error creating guitar in the DB', error)
