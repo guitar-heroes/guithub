@@ -59,7 +59,7 @@ router.post('/signup', isLoggedOut, async (req, res) => {
       })
     // Bind the user to the session object
     req.session.user = newUser
-    res.redirect('/profile')
+    res.redirect('/guitars')
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return res.status(400).render('auth/signup', { errorMessage: error.message })
@@ -106,7 +106,7 @@ router.post('/login', isLoggedOut, async (req, res, next) => {
     }
     req.session.user = foundUser
     // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-    return res.redirect('/profile')
+    return res.redirect('/guitars')
   } catch (err) {
     // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
     // you can just as easily run the res.status that is commented out below

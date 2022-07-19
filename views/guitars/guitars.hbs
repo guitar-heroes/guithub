@@ -3,13 +3,13 @@
   <div class='guitars-grid'>
     {{#each guitarList}}
       <div class='guitar-card'>
+        <h3>{{this.nickName}}</h3>
         <a href='/guitars/{{this._id}}'><img src={{this.image}} alt='beauty-pic' /></a>
         <p>Brand: {{this.brand}}</p>
         <p>Model: {{this.model}}</p>
-        <p>User: {{this.user.username}}</p>
-        <form action='/guitars/{{this._id}}/delete' method='POST'>
-          <button class='button delete'>Delete</button>
-        </form>
+        <p>User:
+          <a href='/profile/{{this.user._id}}/collection'>{{this.user.username}}</a>
+        </p>
       </div>
     {{/each}}
   </div>
