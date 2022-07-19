@@ -6,8 +6,6 @@ const User = require('../models/User.model')
 
 const fileUploader = require('../config/cloudinary.config')
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require('../middleware/isLoggedOut')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 //READ list of guitars
@@ -60,7 +58,7 @@ router.post('/create', fileUploader.single('image'), isLoggedIn, async (req, res
   }
 
   try {
-    const newlyCreatedGuitar = await Guitar.create(newGuitar)
+    await Guitar.create(newGuitar)
     res.redirect('/guitars')
   } catch (error) {
     console.log('Error creating guitar in the DB', error)
@@ -83,15 +81,11 @@ router.get('/:id', async (req, res, next) => {
 // UPDATE: Render form
 router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
   const id = req.params.id
-  const typeOptions = {
-    optionOne: 'Electric',
-    optionTwo: 'Classic',
-    optionThree: 'Acoustic',
-  }
+  const typeOptions = ['Electric', 'Classic', 'Acoustic']
 
   try {
     const guitarDetails = await Guitar.findById(id).populate('user')
-    res.render('guitars/guitar-edit', guitarDetails)
+    res.render('guitars/guitar-edit', { guitarDetails, typeOptions })
   } catch (error) {
     console.log('Error getting guitar details from DB', error)
     next(error)
@@ -99,23 +93,24 @@ router.get('/:id/edit', isLoggedIn, async (req, res, next) => {
 })
 
 // UPDATE: Process form
-router.post('/:id/edit', isLoggedIn, async (req, res, next) => {
+router.post('/:id/edit', fileUploader.single('image'), isLoggedIn, async (req, res, next) => {
   const id = req.params.id
 
-  const newDetails = {
-    nickName: req.body.nickName,
-    brand: req.body.brand,
-    model: req.body.model,
-    countryOrigin: req.body.countryOrigin,
-    type: req.body.type,
-    year: req.body.year,
-    fingerboardMaterial: req.body.fingerboardMaterial,
-    pickupConfig: req.body.pickupConfig,
-    image: req.body.image,
-    artists: req.body.artists,
-    user: req.session.user._id,
-  }
   try {
+    const { image } = await Guitar.findById(id)
+    const newDetails = {
+      nickName: req.body.nickName,
+      brand: req.body.brand,
+      model: req.body.model,
+      countryOrigin: req.body.countryOrigin,
+      type: req.body.type,
+      year: req.body.year,
+      fingerboardMaterial: req.body.fingerboardMaterial,
+      pickupConfig: req.body.pickupConfig,
+      image: req.file ? req.file.path : image,
+      artists: req.body.artists,
+      user: req.session.user._id,
+    }
     await Guitar.findByIdAndUpdate(id, newDetails)
     res.redirect('/guitars')
   } catch (error) {
