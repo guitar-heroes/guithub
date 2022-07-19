@@ -11,21 +11,35 @@
   <body>
 
     <nav id='navbar'>
-      <ul>
-        <li>
-          <a href='/'>Home</a>
-        </li>
-        |
-        <li>
-          <a href='/profile'>Profile</a>
-        </li>
-      </ul>
-      <ul>
-        {{#if session.user}}
+      {{#if session.user}}
+        <ul>
+          <li>
+            <a href='/guitars'>Explore</a>
+          </li>
+          |
+          <li>
+            <a href='/profile/{{session.user._id}}/collection'>My Beauties</a>
+          </li>
+          <li>
+            <a href='/guitars/create'>Create new Beauty</a>
+          </li>
+          |
+          <li>
+            <a href='#'>My profile</a>
+          </li>
+        </ul>
+        <ul>
           <li>
             <a href='/auth/logout'>Log Out</a>
           </li>
-        {{else}}
+        </ul>
+      {{else}}
+        <ul>
+          <li>
+            <a href='/guitars'>Explore</a>
+          </li>
+        </ul>
+        <ul>
           <li>
             <a href='/auth/signup'>Sign up</a>
           </li>
@@ -33,8 +47,8 @@
           <li>
             <a href='/auth/login'>Log In</a>
           </li>
-        {{/if}}
-      </ul>
+        </ul>
+      {{/if}}
     </nav>
 
     <div id='wrapper'>
