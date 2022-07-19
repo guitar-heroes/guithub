@@ -1,15 +1,12 @@
 <div class='box max-width'>
-  <h1>Your Collection</h1>
+  <h1>{{user.username}}'s Collection</h1>
   <div class='guitars-grid'>
     {{#each collection}}
       <div class='guitar-card'>
         <h3>{{nickName}}</h3>
-        <a href='/guitars/{{id}}'><img src={{image}} alt='beauty-pic' /></a>
+        <a href='/guitars/{{this.id}}'><img src={{image}} alt='beauty-pic' /></a>
         <p>Brand: {{brand}}</p>
         <p>Model: {{model}}</p>
-        <form action='/guitars/{{id}}/delete' method='POST'>
-          <button class='button delete'>Delete</button>
-        </form>
       </div>
     {{/each}}
   </div>
