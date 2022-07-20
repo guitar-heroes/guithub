@@ -1,7 +1,12 @@
 <div class='box auto-width form-box'>
   <h1>Admire this beauty</h1>
 
-  <img src='{{image}}' alt='' />
+  {{#if image}}
+    <img src={{image}} alt='first-guitar-pic' />
+  {{else}}
+    <img src='/images/guitar-default-img.jpeg' alt='alt-guitar-pic' />
+  {{/if}}
+
   <p>Nickname: {{nickName}}</p>
   <p>Brand: {{brand}}</p>
   <p>Model: {{model}}</p>

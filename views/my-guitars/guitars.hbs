@@ -4,10 +4,14 @@
     {{#each myCollection}}
       <div class='guitar-card'>
         <h3>{{nickName}}</h3>
-        <a href='/profile/guitar/{{id}}'><img src={{image}} alt='beauty-pic' /></a>
+        {{#if image}}
+          <a href='/profile/guitar/{{id}}'><img src={{image}} alt='first-pic' /></a>
+        {{else}}
+          <a href='/profile/guitar/{{id}}'><img src='/images/guitar-default-img.jpeg' alt='second' /></a>
+        {{/if}}
         <p>Brand: {{brand}}</p>
         <p>Model: {{model}}</p>
-        <form action='/guitars/{{id}}/delete' method='POST'>
+        <form action='/profile/guitar/{{id}}/delete' method='POST'>
           <button class='button delete'>Delete</button>
         </form>
       </div>

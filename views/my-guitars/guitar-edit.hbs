@@ -53,10 +53,9 @@
 
         <div class="row-btns">
         <button class="button" type="submit"> Change </button> 
-        <form action="profile/guitar/{{guitarDetails._id}}/delete" method="POST">
-            <button class="button delete">Delete</button>
-        </form>
         </div>    
     </form>
-
+    <form action="/profile/guitar/{{guitarDetails._id}}/delete" method="POST">
+        <button class="button delete">Delete</button>
+    </form>
 </div>
