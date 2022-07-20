@@ -28,7 +28,7 @@ const userSchema = new Schema(
     favGenres: String,
     setup: String,
     description: String,
-    image: {
+    imagePhoto: {
       type: String,
       default: 'https://res.cloudinary.com/dohwegeh8/image/upload/v1658251303/guitars/photo-profile_pezssc.jpg',
     },
