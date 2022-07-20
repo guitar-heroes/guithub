@@ -1,14 +1,20 @@
-<form action="/auth/login" method="POST">
-   <label> Username
-      <input type="text" name="username">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
+<div class='box auto-width form-box'>
+  <h1>Log In</h1>
+  {{#if errorMessage}}
+    <p class='error'>{{errorMessage}}</p>
+  {{/if}}
+  <form class='form' id='log-in' action='/auth/login' method='POST'>
+    <label>
+      Username / Email:
+      <input class='text-input' type='text' name='user' />
+    </label>
+    <label>
+      Password:
+      <input class='text-input' type='password' name='password' />
+    </label>
+  </form>
 
-   <button type="submit">Submit</button>
-</form>
+  <p>Don't have an account yet? Sign up <a href='/auth/signup'>here</a></p>
 
-{{#if errorMessage}}
-   {{errorMessage}}
-{{/if}}
+  <button class='button' form='log-in' type='submit'>Submit</button>
+</div>

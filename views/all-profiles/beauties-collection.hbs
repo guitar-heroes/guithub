@@ -1,0 +1,16 @@
+<div class='box max-width'>
+  <h1>Welcome to Guithub!</h1>
+  <div class='guitars-grid'>
+    {{#each guitarList}}
+      <div class='guitar-card'>
+        <h3>{{this.nickName}}</h3>
+        <a href='/guitars/{{this._id}}'><img src={{this.image}} alt='beauty-pic' /></a>
+        <p>Brand: {{this.brand}}</p>
+        <p>Model: {{this.model}}</p>
+        <p>Artist:
+          <a href='/guitars/collection/{{this.user.username}}'>{{this.user.username}}</a>
+        </p>
+      </div>
+    {{/each}}
+  </div>
+</div>

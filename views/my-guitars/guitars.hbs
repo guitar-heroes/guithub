@@ -1,0 +1,20 @@
+<div class='box max-width'>
+  <h1>Your Collection</h1>
+  <div class='guitars-grid'>
+    {{#each myCollection}}
+      <div class='guitar-card'>
+        <h3>{{nickName}}</h3>
+        {{#if image}}
+          <a href='/profile/guitar/{{id}}'><img src={{image}} alt='first-pic' /></a>
+        {{else}}
+          <a href='/profile/guitar/{{id}}'><img src='/images/guitar-default-img.jpeg' alt='second' /></a>
+        {{/if}}
+        <p>Brand: {{brand}}</p>
+        <p>Model: {{model}}</p>
+        <form action='/profile/guitar/{{id}}/delete' method='POST'>
+          <button class='button delete'>Delete</button>
+        </form>
+      </div>
+    {{/each}}
+  </div>
+</div>
