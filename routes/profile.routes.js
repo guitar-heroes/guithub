@@ -137,7 +137,6 @@ router.get('/:userId', isLoggedIn, async (req, res, next) => {
 router.get('/:userId/edit', isLoggedIn, async (req, res, next) => {
   try {
     const userDetails = await User.findById(req.params.userId)
-    console.log(userDetails)
     res.render('profile/profile-edit', userDetails)
   } catch (error) {
     console.log('error while retrieving user from DB ,', error)
@@ -176,6 +175,7 @@ router.post('/:userId/delete', isLoggedIn, async (req, res, next) => {
     }
   })
   try {
+    await Guitar.deleteMany({ user: req.params.userId })
     await User.findByIdAndRemove(req.params.userId)
     res.redirect('/')
   } catch (error) {
