@@ -38,7 +38,7 @@ router.post('/create-guitar', fileUploader.single('image'), isLoggedIn, async (r
     fingerboardMaterial: req.body.fingerboardMaterial,
     pickupConfig: req.body.pickupConfig,
     artists: req.body.artists,
-    image: req.file.path,
+    image: req.file ? req.file.path : undefined,
     user: req.session.user._id,
   }
 
@@ -137,6 +137,7 @@ router.get('/:userId', isLoggedIn, async (req, res, next) => {
 router.get('/:userId/edit', isLoggedIn, async (req, res, next) => {
   try {
     const userDetails = await User.findById(req.params.userId)
+    console.log(userDetails)
     res.render('profile/profile-edit', userDetails)
   } catch (error) {
     console.log('error while retrieving user from DB ,', error)
@@ -147,7 +148,7 @@ router.get('/:userId/edit', isLoggedIn, async (req, res, next) => {
 router.post('/:userId/edit', fileUploader.single('imagePhoto'), isLoggedIn, async (req, res, next) => {
   try {
     const { imagePhoto } = await User.findById(req.params.userId)
-    const newDetails = {
+    const newUserDetails = {
       username: req.body.username,
       email: req.body.email,
       name: req.body.name,
@@ -159,15 +160,8 @@ router.post('/:userId/edit', fileUploader.single('imagePhoto'), isLoggedIn, asyn
       imagePhoto: req.file ? req.file.path : imagePhoto,
       user: req.session.user._id,
     }
-
-    // if (!newDetails.username || !newDetails.email) {
-    //   return res.status(400).render('profile/profile-edit', {
-    //     errorMessage: "Hey! Keep username and password alive! Please don't forget to add them!",
-    //   })
-    // }
-
-    await User.findByIdAndUpdate(req.params.userId, newDetails)
-    res.redirect('/profile/profile-page')
+    const updatedDetails = await User.findByIdAndUpdate(req.params.userId, newUserDetails, { new: true })
+    res.render('profile/profile-page', updatedDetails)
   } catch (error) {
     console.log('Error updating user in DB', error)
     next(error)
@@ -176,6 +170,11 @@ router.post('/:userId/edit', fileUploader.single('imagePhoto'), isLoggedIn, asyn
 
 //DELETE Profile
 router.post('/:userId/delete', isLoggedIn, async (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).render('auth/logout', { errorMessage: err.message })
+    }
+  })
   try {
     await User.findByIdAndRemove(req.params.userId)
     res.redirect('/')

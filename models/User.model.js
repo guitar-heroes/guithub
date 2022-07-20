@@ -28,10 +28,7 @@ const userSchema = new Schema(
     favGenres: String,
     setup: String,
     description: String,
-    imagePhoto: {
-      type: String,
-      default: 'https://res.cloudinary.com/dohwegeh8/image/upload/v1658251303/guitars/photo-profile_pezssc.jpg',
-    },
+    imagePhoto: String,
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
