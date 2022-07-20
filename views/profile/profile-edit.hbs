@@ -1,14 +1,55 @@
-<div class='box auto-width form-box'>
-  <h1>Welcome {{user.username}}</h1>
-  <div class='button-group'>
-    <button class='button'>
-      <a class='buttonlink' href='/profile/{{user._id}}/collection'>My Beauties</a>
-    </button>
-    <button class='button'>
-      <a class='buttonlink' href='/guitars/create'>New Beauty</a>
-    </button>
-    <button class='button'>
-      <a class='buttonlink' href='#'>Me, Myself and I</a>
-    </button>
-  </div>
+<div class="box auto-width form-box">
+    <h1>Change your profile, {{username}}</h1>
+
+    {{#if errorMessage}}
+        <p class="warning">
+            {{errorMessage}}
+        </p>
+    {{/if}}
+
+    <form class="form" action="/profile/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+
+        <label>Image:
+            <input type="file" name="imagePhoto" />
+        </label>
+
+        <label> Username:
+            <input type="text" name="nickName" value="{{username}}"/>
+        </label>
+
+        <label> Name:
+            <input type="text" name="brand" value="{{name}}"/> 
+        </label>
+
+        <label> Email:
+            <input type="text" name="model" value="{{email}}"/> 
+        </label>
+
+        <label> Country:
+            <input type="text" name="countryOrigin" value="{{country}}"/>
+        </label>
+
+        <label> Favorite artists:
+            <input type="text" name="year" value="{{favArtists}}"/>
+        </label>
+
+        <label> Favorite genres:
+            <input type="text" name="fingerboardMaterial" value="{{favGenres}}"></input>
+        </label>
+
+        <label> Your setup:
+            <input type="text" name="pickupConfig" value="{{setup}}"> </input>
+        </label>
+
+        <label for="textarea"> Description:</label>
+        <textarea id="textarea" name="artists" cols="20" rows="2"> {{description}}</textarea>
+
+        <div class="row-btns">
+        <button class="button" type="submit"> Change </button> 
+        <form action="/profile/{{_id}}/delete" method="POST">
+            <button class="button delete">Delete</button>
+        </form>
+        </div>    
+    </form>
+
 </div>

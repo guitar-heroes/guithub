@@ -30,8 +30,8 @@ app.use((req, res, next) => {
 })
 
 // 👇 Start handling routes here
-const index = require('./routes/index.routes')
-app.use('/', index)
+const home = require('./routes/home.routes')
+app.use('/', home)
 
 const authRoutes = require('./routes/auth.routes')
 app.use('/auth', authRoutes)

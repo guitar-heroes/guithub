@@ -1,11 +1,14 @@
 <div class='box auto-width form-box'>
-  <h1>Welcome {{user.username}}</h1>
+  <h1>Welcome {{username}}</h1>
+  <img src={{imagePhoto}} alt='profile picture' />
   <div>
     <p>Name: {{name}}</p>
-    <p>Email: {{email}}</p>
-    <p>Password: {{password}}</p>
-    <p>Country of origin: {{country}}</p>
-    <p>Description: </p>
+    <p>Hit me up here: {{email}}</p>
+    <p>Borned in: {{country}}</p>
+    <p>Artists who I look up to: {{favArtists}}</p>
+    <p>Music genres I cannot live without: {{favGenres}}</p>
+    <p>Other set up I normally work with (amps, pedals, ...): {{setup}}</p>
+    <p>Something you need to know about me: {{description}}</p>
   </div>
-  <button><a href='/edit'>Edit</a></button>
+  <button><a href='{{_id}}/edit'>Edit</a></button>
 </div>
