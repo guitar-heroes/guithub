@@ -87,7 +87,7 @@ router.post('/login', isLoggedOut, async (req, res, next) => {
   }
   try {
     // Search the database for a user with the username submitted in the form
-    const foundByUsername = await User.findOne({ user })
+    const foundByUsername = await User.findOne({ username: user })
     const foundByEmail = await User.findOne({ email: user })
     const foundUser = foundByUsername ? foundByUsername : foundByEmail
     // If the user isn't found, send the message that user provided wrong credentials
