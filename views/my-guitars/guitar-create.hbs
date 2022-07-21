@@ -33,12 +33,13 @@
             <input class="text-input" type="number" name="year" />
         </label>
 
-        <label for="cars">Type of guitar:</label>
+        <label for="type">Type of guitar:
         <select name="type" id="type">
             {{#each typeOptions}}
                 <option value={{this}}>{{this}}</option>
             {{/each}}
         </select>
+        </label>
 
         <label> Fingerboard Material:
             <input class="text-input" type='text' name="fingerboardMaterial"></input>
