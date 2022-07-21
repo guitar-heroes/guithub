@@ -19,9 +19,11 @@ router.get('/collection/:username', async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.params.username })
     const collection = await Guitar.find({ user: user._id })
+    console.log('User: ', user)
+    console.log('Cellection: ', collection)
     res.render('all-profiles/user-beauties', { collection, user })
   } catch (err) {
-    console.log('Error finding your beaties: ', error)
+    console.log('Error finding your beauties: ', error)
   }
 })
 

@@ -8,7 +8,8 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 router.get('/myCollection', isLoggedIn, async (req, res, next) => {
   try {
     const myCollection = await Guitar.find({ user: req.session.user._id })
-    res.render('my-guitars/guitars', { myCollection })
+    const viewObject = !myCollection[0] ? {} : { myCollection }
+    res.render('my-guitars/guitars', viewObject)
   } catch (error) {
     console.log('Error finding guitar: ', error)
   }

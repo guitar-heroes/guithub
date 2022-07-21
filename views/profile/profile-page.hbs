@@ -6,16 +6,16 @@
     <img src='/images/photo-profile.jpeg' alt='alt-pic-prof' />
   {{/if}}
 
-  <div>
+  <div id='profile-details'>
     <p>Name: {{name}}</p>
-    <p>Hit me up here: {{email}}</p>
-    <p>Borned in: {{country}}</p>
+    <p>Email: {{email}}</p>
+    <p>Born in: {{country}}</p>
     <p>Artists who I look up to: {{favArtists}}</p>
     <p>Music genres I cannot live without: {{favGenres}}</p>
     <p>Other set up I normally work with (amps, pedals, ...): {{setup}}</p>
     <p>Something you need to know about me: {{description}}</p>
   </div>
   <a class='buttonlink' href='/profile/{{_id}}/edit'>
-    <button class='button'>Edit</button>
+    <button class='button edit-btn'>Edit</button>
   </a>
 </div>

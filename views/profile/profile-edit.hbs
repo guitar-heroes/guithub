@@ -13,16 +13,18 @@
             <input type="file" name="imagePhoto" />
         </label>
 
-        <label> Username:
-            <input type="text" name="username" value="{{username}}"/>
+        <label> 
+            <p>Username: <span>(*)</span></p>
+            <input type="text" name="username" value="{{username}}" required/>
         </label>
 
         <label> Name:
             <input type="text" name="name" value="{{name}}"/> 
         </label>
 
-        <label> Email:
-            <input type="text" name="email" value="{{email}}"/> 
+        <label>
+            <p>Email: <span>(*)</span></p>
+            <input type="text" name="email" value="{{email}}" required/> 
         </label>
 
         <label> Country:
