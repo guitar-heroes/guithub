@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
 :root {
   --border-color: #bcbcbc;
   --shadow-color: #4e4e4e;
@@ -11,6 +13,10 @@
 
 body {
   font: 1rem 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  background-image: url('../images/cover-image6.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a {
@@ -18,7 +24,11 @@ a {
 }
 
 h1 {
-  color: 15px;
+  color: white;
+  /* RA: switched to white for consistency purposes. */
+  font-family: 'Alfa Slab One', cursive;
+  letter-spacing: 0.2rem;
+  font-size: 1.9rem;
 }
 
 input[type='text'],
@@ -42,9 +52,10 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid white;
   padding: 3vh 5%;
   margin-bottom: 5vh;
+  background-color: rgba(217, 217, 217, 0.2);
 }
 
 #navbar ul {
@@ -52,6 +63,12 @@ textarea {
   display: flex;
   justify-content: flex-end;
   column-gap: 0.8rem;
+  color: white;
+}
+
+#navbar ul a {
+  text-decoration: none;
+  color: white;
 }
 
 #wrapper {
@@ -145,4 +162,76 @@ textarea {
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   row-gap: 3rem;
+}
+
+#title h1 {
+  margin-bottom: 4%;
+}
+
+#title div:nth-child(1) {
+  margin-left: 2%;
+}
+
+#title div:nth-child(2) {
+  margin-left: 20%;
+}
+#title div:nth-child(3) {
+  /* text-align: center; */
+  margin-left: 50%;
+}
+
+#description {
+  text-align: center;
+  color:white;
+  font-size: 100%;
+  align-items: center;
+  margin: 10% 5% 0 45%;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+#details {
+  display:flex;
+  margin: 2% 5% 3% 45%;
+}
+
+.details-box {
+  color: white;
+  margin: 2%;
+  background-color: rgba(217, 217, 217, 0.16);
+  border: 1px solid #FFFCFC;
+  border-radius: 20px;
+  padding: 4%;
+  text-align: center;
+  max-width: 40%;
+}
+.details-box h4{
+  margin-bottom: 5%;
+}
+
+#signup{
+  display:flex;
+  flex-direction: column;
+  color:white;
+  text-align: center;
+  background-color: rgb(217, 217, 217);
+  border: 1px solid #FFFCFC;
+  border-radius: 20px;
+  margin:0 20% 0 60%;
+  padding: 1% 0 1% 0;
+  color: rgb(97, 94, 94);
+}
+
+#break {
+  color:white;
+  text-align: right;
+  margin-right: 30%;
+}
+
+footer {
+  display:flex;
+  color: white;
+  justify-content: space-between;
+  margin: 10% 2% 2% 2%;
+
 }
