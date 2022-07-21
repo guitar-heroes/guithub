@@ -1,6 +1,7 @@
 {
   "name": "guithub-project",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "constributors": [{"name": "Paul Tiry", "email": "tirypaul@gmail.com","url": "https://github.com/ptiry02" }, {"name": "Ruben Andino", "email": "rubenanlo@gmail.com", "url": "https://github.com/rubenanlo"}],
   "private": true,
   "scripts": {
     "start": "node server.js",
