@@ -5,8 +5,10 @@
       <div class='guitar-card'>
         <h3>{{nickName}}</h3>
         <a href='/guitars/{{this.id}}'><img src={{image}} alt='beauty-pic' /></a>
-        <p>Brand: {{brand}}</p>
-        <p>Model: {{model}}</p>
+        <div class='guitar-info'>
+          <p>Brand: {{brand}}</p>
+          <p>Model: {{model}}</p>
+        </div>
       </div>
     {{/each}}
   </div>

@@ -7,22 +7,27 @@
         </p>
     {{/if}}
 
+        <p>(*) Required fields</p>
+
     <form class="form" action="/profile/guitar/{{guitarDetails._id}}/edit" method="POST" enctype="multipart/form-data">
 
         <label>Image:
             <input type="file" name="image" />
         </label>
 
-        <label> Nickname:
-            <input type="text" name="nickName" value="{{guitarDetails.nickName}}"/>
+        <label> 
+            <p>Nickname: <span>(*)</span></p>
+            <input type="text" name="nickName" value="{{guitarDetails.nickName}}" required/>
         </label>
 
-        <label> Brand:
-            <input type="text" name="brand" value="{{guitarDetails.brand}}"/> 
+        <label> 
+            <p>Brand: <span>(*)</span></p>
+            <input type="text" name="brand" value="{{guitarDetails.brand}}" required/> 
         </label>
 
-        <label> Model:
-            <input type="text" name="model" value="{{guitarDetails.model}}"/> 
+        <label> 
+            <p>Model: <span>(*)</span></p>
+            <input type="text" name="model" value="{{guitarDetails.model}}" required/> 
         </label>
 
         <label> Country of origin:

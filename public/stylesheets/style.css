@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
   --border-color: #bcbcbc;
   --shadow-color: #4e4e4e;
-  --error-color: #dd1414;
+  --text: #ffffff;
+  --dark-red: #85161a;
+  --dark-gold: #D4BE6B;
+  --white-transparent: #d9d9d929;
 }
 
 * {
@@ -12,29 +15,46 @@
 }
 
 body {
+  overflow: hidden;
   font: 1rem 'Lucida Grande', Helvetica, Arial, sans-serif;
   font-size: 1rem;
   background-image: url('../images/cover-image6.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
+  color: var(--text);
+}
+
+span {
+  align-self: flex-start;
 }
 
 a {
-  color: #00b7ff;
+  color: var(--shadow-color);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 h1 {
-  color: white;
-  /* RA: switched to white for consistency purposes. */
-  font-family: 'Alfa Slab One', cursive;
+  font-family: 'Roboto', sans-serif;
   letter-spacing: 0.2rem;
   font-size: 1.9rem;
+}
+
+input[type='file']:hover {
+  cursor: pointer;
+}
+input[type='file' i]:hover {
+  cursor: pointer;
 }
 
 input[type='text'],
 input[type='email'],
 input[type='number'],
 input[type='password'],
+input[type='file'],
+select,
 textarea {
   padding: 0.3rem 0.5rem;
 }
@@ -45,7 +65,7 @@ textarea {
 }
 
 .error {
-  color: var(--error-color);
+  color: var(--text);
 }
 
 #navbar {
@@ -55,7 +75,7 @@ textarea {
   border-bottom: 2px solid white;
   padding: 3vh 5%;
   margin-bottom: 5vh;
-  background-color: rgba(217, 217, 217, 0.2);
+  background-color: var(--white-transparent);
 }
 
 #navbar ul {
@@ -63,7 +83,6 @@ textarea {
   display: flex;
   justify-content: flex-end;
   column-gap: 0.8rem;
-  color: white;
 }
 
 #navbar ul a {
@@ -74,19 +93,34 @@ textarea {
 #wrapper {
   display: flex;
   justify-content: center;
+  overflow: auto;
+  height: 100%;
 }
 
 .box {
   margin-bottom: 5rem;
-  padding: 10vh;
+  padding: 2% 4%;
   border: 1px solid var(--border-color);
   box-shadow: 0px 4px 4px 1px var(--shadow-color);
-  border-radius: 20px;
+  border-radius: 30px;
+  height: 73vh;
+  overflow: auto;
+  background-color: rgba(217, 217, 217, 0.16);
 }
 
 .box > h1 {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
+}
+
+#empty-collection {
+  margin-top: 20%;
+  text-align: center;
+}
+
+.box > img {
+  border-radius: 30px;
+  max-width: 60%;
 }
 
 .auto-width {
@@ -110,7 +144,7 @@ textarea {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  margin: 1.2rem 0;
+  margin: 0.6rem 0;
 }
 
 .form label {
@@ -121,10 +155,15 @@ textarea {
 }
 
 .button {
+  border: none;
   align-self: center;
   padding: 0.3rem 0.8rem;
   font-size: 1rem;
   border-radius: 10px;
+}
+
+.button:active {
+  box-shadow: inset 0px 0px 4px 0px black;
 }
 
 .button-group {
@@ -143,6 +182,10 @@ textarea {
   text-decoration: none;
 }
 
+.edit-btn:active {
+  box-shadow: inset 0px 0px 5px 0px black;
+}
+
 .row-btns {
   align-self: center;
   display: flex;
@@ -150,17 +193,21 @@ textarea {
 }
 
 .delete {
-  color: var(--error-color);
-  border-color: var(--error-color);
+  background-color: var(--dark-red);
+  color: white;
+  border: none;
+}
+
+.delete:active {
+  box-shadow: inset 0px 0px 4px 0px var(--border-color);
 }
 
 .guitars-grid {
   display: grid;
-  align-content: space-between;
   justify-content: space-between;
   justify-items: center;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   row-gap: 3rem;
 }
 
@@ -182,56 +229,103 @@ textarea {
 
 #description {
   text-align: center;
-  color:white;
   font-size: 100%;
   align-items: center;
-  margin: 10% 5% 0 45%;
-  align-items: center;
+  margin: 2% 5% 0 45%;
   font-size: 1.5rem;
 }
 
 #details {
-  display:flex;
-  margin: 2% 5% 3% 45%;
+  display: flex;
+  margin: 2% 5% 2% 45%;
 }
 
 .details-box {
-  color: white;
   margin: 2%;
   background-color: rgba(217, 217, 217, 0.16);
-  border: 1px solid #FFFCFC;
+  border: 1px solid #fffcfc;
   border-radius: 20px;
   padding: 4%;
   text-align: center;
   max-width: 40%;
 }
-.details-box h4{
+.details-box h4 {
   margin-bottom: 5%;
 }
 
-#signup{
-  display:flex;
+#signup {
+  display: flex;
   flex-direction: column;
-  color:white;
+  row-gap: 0.5rem;
   text-align: center;
-  background-color: rgb(217, 217, 217);
-  border: 1px solid #FFFCFC;
+  background-color: var(--dark-gold);
   border-radius: 20px;
-  margin:0 20% 0 60%;
+  margin: 0 24% 0 66%;
   padding: 1% 0 1% 0;
-  color: rgb(97, 94, 94);
+  color: #333;
+}
+
+#signup > a {
+  color: #333;
+}
+
+.auth-link {
+  color: var(--text);
 }
 
 #break {
-  color:white;
   text-align: right;
   margin-right: 30%;
 }
 
 footer {
-  display:flex;
-  color: white;
+  display: flex;
   justify-content: space-between;
   margin: 10% 2% 2% 2%;
+}
+.guitar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background-color: rgb(217, 217, 217);
+  color: black;
+  border-radius: 30px;
+  row-gap: 0.6rem;
+  width: 300px;
+  height: 400px;
+}
 
+.guitar-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.guitar-card > h3 {
+  text-align: center;
+}
+
+.guitar-card > p {
+  font-size: 0.85rem;
+}
+
+.guitar-card > a {
+  max-width: 70%;
+}
+
+.guitar-card > a > img {
+  border-radius: 30px;
+  width: 100%;
+}
+
+.guitar-card > form {
+  align-self: center;
+}
+
+#profile-details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
 }

@@ -7,22 +7,26 @@
         </p>
     {{/if}}
 
+    <p>(*) Required fields</p>
+
     <form class="form" action="/profile/{{_id}}/edit" method="POST" enctype="multipart/form-data">
 
         <label>Image:
             <input type="file" name="imagePhoto" />
         </label>
 
-        <label> Username:
-            <input type="text" name="username" value="{{username}}"/>
+        <label> 
+            <p>Username: <span>(*)</span></p>
+            <input type="text" name="username" value="{{username}}" required/>
         </label>
 
         <label> Name:
             <input type="text" name="name" value="{{name}}"/> 
         </label>
 
-        <label> Email:
-            <input type="text" name="email" value="{{email}}"/> 
+        <label>
+            <p>Email: <span>(*)</span></p>
+            <input type="text" name="email" value="{{email}}" required/> 
         </label>
 
         <label> Country:
@@ -46,7 +50,7 @@
 
         <div class="row-btns">
         <button class="button" type="submit"> Change </button> 
-        </div>    
+        </div>
     </form>
     <form action="/profile/{{_id}}/delete" method="POST">
         <button class="button delete">Delete</button>
