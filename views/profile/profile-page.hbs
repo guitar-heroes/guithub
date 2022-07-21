@@ -1,9 +1,9 @@
 <div class='box auto-width form-box'>
   <h1>Welcome {{username}}</h1>
   {{#if imagePhoto}}
-    <img src={{imagePhoto}} alt='first-pic-prof' /></a>
+    <img src={{imagePhoto}} alt='first-pic-prof' />
   {{else}}
-    <img src='/images/photo-profile.jpeg' alt='alt-pic-prof' /></a>
+    <img src='/images/photo-profile.jpeg' alt='alt-pic-prof' />
   {{/if}}
 
   <div>
@@ -15,7 +15,7 @@
     <p>Other set up I normally work with (amps, pedals, ...): {{setup}}</p>
     <p>Something you need to know about me: {{description}}</p>
   </div>
-  <button class='button'>
-    <a class='buttonlink' href='/profile/{{_id}}/edit'>Edit</a>
-  </button>
+  <a class='buttonlink' href='/profile/{{_id}}/edit'>
+    <button class='button'>Edit</button>
+  </a>
 </div>
