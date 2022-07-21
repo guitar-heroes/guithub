@@ -7,6 +7,8 @@
         </p>
     {{/if}}
 
+    <p>(*) Required fields</p>
+
     <form class="form" action="/profile/{{_id}}/edit" method="POST" enctype="multipart/form-data">
 
         <label>Image:
@@ -48,7 +50,7 @@
 
         <div class="row-btns">
         <button class="button" type="submit"> Change </button> 
-        </div>    
+        </div>
     </form>
     <form action="/profile/{{_id}}/delete" method="POST">
         <button class="button delete">Delete</button>

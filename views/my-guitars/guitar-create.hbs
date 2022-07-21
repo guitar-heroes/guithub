@@ -7,21 +7,26 @@
         </p>
     {{/if}}
 
+        <p>(*) Required fields</p>
+
     <form class="form" action="/profile/create-guitar" method="POST" enctype="multipart/form-data">
 
         <label>Image:
             <input type="file" name="image" />
         </label>
 
-        <label> Nickname:
+        <label> 
+            <p>Nickname: <span>(*)</span></p>
             <input class="text-input" type="text" name="nickName" />
         </label>
 
-        <label> Brand:
+        <label> 
+            <p>Brand: <span>(*)</span></p>
             <input class="text-input" type="text" name="brand" /> 
         </label>
 
-        <label> Model:
+        <label> 
+            <p>Model: <span>(*)</span></p>
             <input class="text-input" type="text" name="model" /> 
         </label>
 
