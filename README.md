@@ -22,4 +22,4 @@ Share yours. Find others._
 
 ## Try it!
 
-[https://rubenanlo.github.io/guithub/]url
+[https://guitarheroes-guithub.herokuapp.com/](url)
