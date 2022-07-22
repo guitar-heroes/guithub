@@ -74,7 +74,7 @@ textarea {
   justify-content: space-between;
   border-bottom: 2px solid white;
   padding: 3vh 5%;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
   background-color: var(--white-transparent);
 }
 
@@ -223,13 +223,12 @@ textarea {
   margin-left: 20%;
 }
 #title div:nth-child(3) {
-  /* text-align: center; */
   margin-left: 50%;
+  margin-bottom: 1.5%;
 }
 
 #description {
   text-align: center;
-  /* font-size: 100%; */
   align-items: center;
   margin: 2% 5% 0 45%;
   font-size: 1.2rem;
@@ -237,7 +236,7 @@ textarea {
 
 #details {
   display: flex;
-  margin: 2% 5% 2% 45%;
+  margin: 1% 5% 1% 45%;
 }
 
 .details-box {
@@ -260,7 +259,7 @@ textarea {
   text-align: center;
   background-color: var(--dark-gold);
   border-radius: 20px;
-  margin: 0 24% 0 66%;
+  margin: 1% 24% 0 66%;
   padding: 1% 0 1% 0;
   color: #333;
 }
@@ -275,13 +274,13 @@ textarea {
 
 #break {
   text-align: right;
-  margin-right: 30%;
+  margin-right: 26%;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
-  margin: 10% 2% 2% 2%;
+  margin: 2% 2% 2% 2%;
 }
 .guitar-card {
   display: flex;
